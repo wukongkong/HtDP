@@ -1,0 +1,52 @@
+;; The first three lines of this file were inserted by DrRacket. They record metadata
+;; about the language level of this file in a form that our tools can easily process.
+#reader(lib "htdp-beginner-reader.ss" "lang")((modname |3.3|) (read-case-sensitive #t) (teachpacks ()) (htdp-settings #(#t constructor repeating-decimal #f #t none #f ())))
+;;================;;
+;; Exercise 3.3.4 ;;
+;;================;;
+
+;; area-circle: number -> number
+;; to compute the area of a circle, given its radius
+;; example: (area-circle 3) should produce 28.27
+(define (area-circle radius)
+  (* pi radius radius))
+;; test:
+(area-circle 3) "should produce" 28.27
+
+;; area-donut: number, number -> number
+;; to compute the area of a donut, given its inner and outer radii
+;; example: (area-donut 3 6) "should produce" 84.82
+(define (area-donut inner outer)
+  (- (area-circle outer) (area-circle inner)))
+;; test:
+(area-donut 3 6) "should produce" 84.82
+
+;; circumference-circle: number -> number
+;; to compute the circumference of a circle, given its radius
+;; example: (circumference-circle 3) should be 18.85
+(define (circumference-circle radius)
+  (* 2 pi radius))
+;; test:
+(circumference-circle 3) "should produce" 18.85
+
+;; area-pipe: number, number, number -> number
+;; to compute the area of a pipe, given its inner radius, length and thickness
+;; example: (area-pipe 3 6 2) "should be" 402.12
+(define (area-pipe inner-radius length thickness)
+  (+ (* 2 (area-donut inner-radius (+ inner-radius thickness)))     ; s.a. of rings on ends
+     (* (circumference-circle (+ inner-radius thickness)) length)   ; s.a. of outer cylinder
+     (* (circumference-circle inner-radius) length)))               ; s.a. of inner cylinder
+;; test:
+(area-pipe 3 6 2) "should be" 402.12
+
+;; area-pipe2 : number, number, number -> number
+;; to compute the area of a pipe, given its inner radius, length and thickness
+;; single definition version
+;; example: (area-pipe2 3 6 2) "should be" 402.12
+(define (area-pipe2 inner-radius length thickness)
+  (+ (* 2 (- (* pi (+ inner-radius thickness) (+ inner-radius thickness))
+             (* pi inner-radius inner-radius)))
+     (* (* 2 pi (+ inner-radius thickness)) length)
+     (* (* 2 pi inner-radius)  length)))
+;; test:
+(area-pipe2 3 6 2) "should be" 402.12

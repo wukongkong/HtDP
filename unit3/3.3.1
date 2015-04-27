@@ -1,0 +1,99 @@
+;; The first three lines of this file were inserted by DrRacket. They record metadata
+;; about the language level of this file in a form that our tools can easily process.
+#reader(lib "htdp-beginner-reader.ss" "lang")((modname |3.3|) (read-case-sensitive #t) (teachpacks ()) (htdp-settings #(#t constructor repeating-decimal #f #t none #f ())))
+;;================;;
+;; Exercise 3.3.1 ;;
+;;================;;
+
+;; Constants
+;; ---------
+
+(define CENTIMITERS-PER-INCH 2.54)
+(define INCHES-PER-FOOT 12)
+(define FEET-PER-YARD 3)
+(define YARDS-PER-ROD (+ 5 1/2))
+(define RODS-PER-FURLONG 40)
+(define FURLONG-PER-MILE 8)
+
+;; Function definitions
+;; --------------------
+
+;; inches-to-centimiters: number -> number
+;; to trasnform a length in inches to centimiters
+;; example: (inches-to-centimiters 2.5) should produce 6.35
+(define (inches-to-centimiters inches)
+  (* inches CENTIMITERS-PER-INCH))
+;; test
+(inches-to-centimiters 2.5) "should produce" 6.35
+
+;; feet-to-inches: number -> number
+;; to transform a length in feet to inches
+;; example: (feet-to-inches 3.1) should produce 37.2
+(define (feet-to-inches feet)
+  (* feet INCHES-PER-FOOT))
+;; test
+(feet-to-inches 3.1) "should produce" 37.2
+
+;; yards-to-feet: number -> number
+;; to transform a length in yards to feet
+;; example: (yards-to-feet 0.8) should produce 2.4
+(define (yards-to-feet yards)
+  (* yards FEET-PER-YARD))
+;; test
+(yards-to-feet 0.8) "should produce" 2.4
+
+;; rods-to-yards: number -> number
+;; to transform a length in rods to yards
+;; example: (rods-to-yards 1.7) should produce 9.35
+(define (rods-to-yards rods)
+  (* rods YARDS-PER-ROD))
+;; test:
+(rods-to-yards 1.7) "should produce" 9.35
+
+;; furlongs-to-rods: number -> number
+;; to transform a length in furlongs to rods
+;; example: (furlongs-to-rods 93.6) should produce 3744
+(define (furlongs-to-rods furlongs)
+  (* furlongs RODS-PER-FURLONG))
+;; test:
+(furlongs-to-rods 93.6) "should produce" 3744
+
+;; miles-to-furlongs: number -> number
+;; to transform a length in miles to furlongs
+;; example: (miles-to-furlongs 6.13) should produce 49.04
+(define (miles-to-furlongs miles)
+  (* miles FURLONG-PER-MILE))
+;; test:
+(miles-to-furlongs 6.13) "should produce" 49.04
+
+;; feet-to-centimiters: number -> number
+;; to transform a length in feet to centimiters
+;; example: (feet-to-centimiters 1.24) should produce 37.7952
+(define (feet-to-centimiters feet)
+  (inches-to-centimiters (feet-to-inches feet)))
+;; test:
+(feet-to-centimiters 1.24) "should produce" 37.7952
+
+;; yards-to-centimiters: number -> number
+;; to transform a length in yards to centimiters
+;; example: (yards-to-centimiters 3.33) should produce 304.4952
+(define (yards-to-centimiters yards)
+  (feet-to-centimiters (yards-to-feet yards)))
+;; test:
+(yards-to-centimiters 3.33) "should produce" 304.4952
+
+;; rods-to-inches: number -> number
+;; to transform a length in rods to inches
+;; example: (rods-to-inches 0.77) should produce 152.46
+(define (rods-to-inches rods)
+  (feet-to-inches (yards-to-feet (rods-to-yards rods))))
+;; test:
+(rods-to-inches 0.77) "should produce" 152.46
+
+;; miles-to-feet: number -> number
+;; to transform a length in miles to feet
+;; example: (miles-to-feet 1) should produce 5280
+(define (miles-to-feet miles)
+  (yards-to-feet (rods-to-yards (furlongs-to-rods (miles-to-furlongs miles)))))
+;; test:
+(miles-to-feet 1) "should produce" 5280

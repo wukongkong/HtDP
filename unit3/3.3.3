@@ -1,0 +1,32 @@
+;; The first three lines of this file were inserted by DrRacket. They record metadata
+;; about the language level of this file in a form that our tools can easily process.
+#reader(lib "htdp-beginner-reader.ss" "lang")((modname |3.3|) (read-case-sensitive #t) (teachpacks ()) (htdp-settings #(#t constructor repeating-decimal #f #t none #f ())))
+;;================;;
+;; Exercise 3.3.3 ;;
+;;================;;
+
+;; area-circle: number -> number
+;; to compute the area of a circle, given its radius
+;; example: (area-circle 3) should produce 28.27
+(define (area-circle radius)
+  (* pi radius radius))
+;; test:
+(area-circle 3) "should produce" 28.27
+
+;; circumference-circle: number -> number
+;; to compute the circumference of a circle, given its radius
+;; example: (circumference-circle 3) should be 18.85
+(define (circumference-circle radius)
+  (* 2 pi radius))
+;; test:
+(circumference-circle 3) "should produce" 18.85
+
+
+;; area-cylinder: number, number -> number
+;; to compute the area of a cylinder, given the radius of the cylinder's base disk and its height
+;; example: (area-cylinder 3 6) should produce 169.65
+(define (area-cylinder radius height)
+  (+ (* (circumference-circle radius) height) (* 2 (area-circle radius))))
+;; test:
+(area-cylinder 3 6) "should produce" 169.65
+

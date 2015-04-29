@@ -1,0 +1,28 @@
+;; The first three lines of this file were inserted by DrRacket. They record metadata
+;; about the language level of this file in a form that our tools can easily process.
+#reader(lib "htdp-beginner-reader.ss" "lang")((modname |4.2|) (read-case-sensitive #t) (teachpacks ()) (htdp-settings #(#t constructor repeating-decimal #f #t none #f ())))
+;;================;;
+;; Exercise 2.2.1 ;;
+;;================;;
+
+(define (Fahrenheit->Celsius F)
+  (* (- F 32) (/ 5 9)))
+
+;;================;;
+;; Exercise 2.2.2 ;;
+;;================;;
+(define (dollar->euro D)
+  (* D 0.94))
+
+;;================;;
+;; Exercise 2.2.3 ;;
+;;================;;
+
+(define (triangle length height)
+  (/ (* length height) 2))
+
+;;================;;
+;; Exercise 2.2.4 ;;
+;;================;;
+(define (convert3 x y z)
+  (+ x (* 10 y) (* 100 z)))

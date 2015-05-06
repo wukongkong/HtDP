@@ -1,0 +1,28 @@
+;; The first three lines of this file were inserted by DrRacket. They record metadata
+;; about the language level of this file in a form that our tools can easily process.
+#reader(lib "htdp-beginner-reader.ss" "lang")((modname |5.1|) (read-case-sensitive #t) (teachpacks ()) (htdp-settings #(#t constructor repeating-decimal #f #t none #f ())))
+;;================;;
+;; Exercise 5.1.5 ;;
+;;================;;
+
+;; check-colour: symbol symbol symbol symbol -> symbol
+;; to cheack whether the colour guesses are correct or not
+
+;; EXAMPLES:
+;; (check-colour 'red 'blue 'red 'blue) should be 'Perfect
+;; (check-colour 'red 'blue 'red 'green) should be 'OneColourAtCorrectPosition
+;; (check-colour 'red 'blue 'green 'red) should be 'OneColourOccurs
+;; (check-colour 'red 'blue 'yellow 'green) should be 'NothingCorrect
+
+(define (check-colour target1 target2 guess1 guess2)
+  (cond
+    [(and (symbol=? target1 guess1) (symbol=? target2 guess2)) 'Perfect]
+    [(or (symbol=? target1 guess1) (symbol=? target2 guess2)) 'OneColourAtCorrectPosition]
+    [(or (symbol=? target1 guess2) (symbol=? target2 guess1)) 'OneColourOccurs]
+    [else 'NothingCorrect]))
+
+;; EXAMPLES AS TESTS:
+(symbol=? (check-colour 'red 'blue 'red 'blue) 'Perfect)
+(symbol=? (check-colour 'red 'blue 'red 'green) 'OneColourAtCorrectPosition)
+(symbol=? (check-colour 'red 'blue 'green 'red) 'OneColourOccurs)
+(symbol=? (check-colour 'red 'blue 'yellow 'green) 'NothingCorrect)

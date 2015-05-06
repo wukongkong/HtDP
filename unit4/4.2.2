@@ -5,22 +5,37 @@
 ;; Exercise 4.2.2 ;;
 ;;================;;
 
-;; in-interval-1: number -> boolean
+;; in-interval1: number -> boolean
 ;; to determine whether x is between -3 and 0 (exclusive)
-(define (in-interval-1? x)
+(define (in-interval1? x)
   (and (< -3 x) (< x 0)))
 
-;; in-interval-2: number -> boolean
+;; in-interval2: number -> boolean
 ;; to determine whether x is out of the interval 1 and 2 (exclusive)
-(define (in-interval-2? x)
+(define (in-interval2? x)
   (or (< x 1) (> x 2)))
 
-;; in-interval-3: number -> boolean
+;; in-interval3: number -> boolean
 ;; to determine whether x is out of the interval 1 and 5 (inclusive)
-(define (in-interval-3? x)
+(define (in-interval3? x)
   (not (and (<= 1 x) (<= x 5))))
 
-;; tests:
-(in-interval-1? -2)
-(in-interval-2? -2)
-(in-interval-3? -2)
+;; EXAMPLES TURNED INTO TESTS
+(in-interval1? -4) "should be" false
+(in-interval1? -3) "should be" false
+(in-interval1? 0) "should be" false
+(in-interval1? 1) "should be" false
+(in-interval1? -2) "should be" true
+(in-interval1? -1) "should be" true
+
+(in-interval2? 0) "should be" true
+(in-interval2? 3) "should be" true
+(in-interval2? 1) "should be" false
+(in-interval2? 2) "should be" false
+(in-interval2? 3/2) "should be" false
+
+(in-interval3? 1) "should be" false
+(in-interval3? 3) "should be" false
+(in-interval3? 5) "should be" false
+(in-interval3? 0) "should be" true
+(in-interval3? 6) "should be" true

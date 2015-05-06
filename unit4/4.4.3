@@ -7,10 +7,13 @@
 
 ;; pay-back: number -> number
 ;; to determine the pay-back amount given the charge amount
-;; examples: (pay-back 400) should be 1
-;; examples: (pay-back 1400) should be 5.75
-;; examples: (pay-back 2000) should be 10
-;; examples: (pay-back 2600) should be 14.75
+
+;; EXAMPLES
+;; (pay-back 400) should be 1
+;; (pay-back 1400) should be 5.75
+;; (pay-back 2000) should be 10
+;; (pay-back 2600) should be 14.75
+
 (define (pay-back charge)
   (cond
     [(<= charge 500) (* (/ .25 100) charge)]
@@ -18,7 +21,7 @@
     [(<= charge 2500) (+ (pay-back 1500) (* (/ .75 100) (- charge 1500)))]
     [else (+ (pay-back 2500) (* (/ 1 100) (- charge 2500)))]))
 
-;; tests:
+;; EXAMPLES AS TESTS
 (= (pay-back 400) 1)
 (= (pay-back 1400) 5.75)
 (= (pay-back 2000) 10)

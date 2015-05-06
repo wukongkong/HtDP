@@ -5,13 +5,13 @@
 ;; Exercise 3.3.5 ;;
 ;;================;;
 
-;; rocket-height: number, number -> number
+;; rocket-height: number number -> number
 ;; to compute the height that a rocket reaches, given its constant acceration rate (g) and the time of the flight (t)
 ;; example: (rocket-height 2 10) should be 100
 (define (rocket-height g t)
   (* 1/2 (rocket-speed g t) t))
 
-;; rocket-speed: number, number -> number,
+;; rocket-speed: number number -> number,
 ;; to compute the speed of a rocket, given its constant acceration rate (g) and the time of the flight (t)
 ;; example: (rocket-speed 2 10) should be 20
 (define (rocket-speed g t)

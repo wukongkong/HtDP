@@ -13,7 +13,7 @@
 ;; test:
 (area-circle 3) "should produce" 28.27
 
-;; area-donut: number, number -> number
+;; area-donut: number number -> number
 ;; to compute the area of a donut, given its inner and outer radii
 ;; example: (area-donut 3 6) "should produce" 84.82
 (define (area-donut inner outer)
@@ -29,7 +29,7 @@
 ;; test:
 (circumference-circle 3) "should produce" 18.85
 
-;; area-pipe: number, number, number -> number
+;; area-pipe: number number number -> number
 ;; to compute the area of a pipe, given its inner radius, length and thickness
 ;; example: (area-pipe 3 6 2) "should be" 402.12
 (define (area-pipe inner-radius length thickness)
@@ -39,7 +39,7 @@
 ;; test:
 (area-pipe 3 6 2) "should be" 402.12
 
-;; area-pipe2 : number, number, number -> number
+;; area-pipe2 : number number number -> number
 ;; to compute the area of a pipe, given its inner radius, length and thickness
 ;; single definition version
 ;; example: (area-pipe2 3 6 2) "should be" 402.12

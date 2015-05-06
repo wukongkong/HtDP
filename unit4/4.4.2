@@ -7,19 +7,22 @@
 
 ;; tax: number -> number
 ;; to determine the amount of tax to be paid, given the gross pay
-;; examples: (tax 0) should be 0
-;; examples: (tax 240) should be 0
-;; examples: (tax 480) should be 72
-;; examples: (tax 100) should be 0
-;; examples: (tax 300) should be 45
-;; examples: (tax 500) should be 140
+
+;; EXAMPLES
+;; (tax 0) should be 0
+;; (tax 240) should be 0
+;; (tax 480) should be 72
+;; (tax 100) should be 0
+;; (tax 300) should be 45
+;; (tax 500) should be 140
+
 (define (tax gross-pay)
   (cond
     [(<= gross-pay 240) 0]
     [(<= gross-pay 480) (* gross-pay .15)]
     [else (* gross-pay .28)]))
 
-;; tests:
+;; EXAMPLES TURNED INTO TESTS
 (= (tax 0) 0)
 (= (tax 240) 0)
 (= (tax 480) 72)
@@ -29,22 +32,27 @@
 
 ;; gross-pay: number -> number
 ;; to determine the gross pay for a falt hourly rate of $12, given the number of hours worked
-;; examples: (gross-pay 1) should be 12
-;; examples: (gross-pay 5) should be 60
+
+;; EXAMPLES
+;; (gross-pay 1) should be 12
+;; (gross-pay 5) should be 60
 (define (gross-pay hours)
   (* hours 12))
 
-; tests:
+;; EXAMPLES TURNED INTO TESTS
 (= (gross-pay 1) 12)
 (= (gross-pay 5) 60)
 
 ;; netpay: number -> number
 ;; to determine the net pay (groos pay - taxes), given the number of hours worked
-;; examples: (netpay 1) should be 12
-;; examples: (netpay 40) should be 408
+
+;; EXAMPLES
+;; (netpay 1) should be 12
+;; (netpay 40) should be 408
+
 (define (netpay hours)
   (- (gross-pay hours) (tax (gross-pay hours))))
 
-;; EXAMPLES AS TESTS
+;; EXAMPLES TURNED INTO TESTS
 (= (netpay 1) 12)
 (= (netpay 40) 408)

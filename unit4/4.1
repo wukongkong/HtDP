@@ -18,8 +18,17 @@
 ;; Exercise 4.1.2 ;;
 ;;================;;
 
-(define x 7/2)
+;; x = 4
+(> 4 3) "should be" true
+(and (> 4 3) (> 3 3)) "should be" false
+(= (* 4 4) 4) "should be" false
 
-(> x 3)
-(and (> 4 x) (> x 3))
-(= (* x x) x)
+;; x = 2
+(> 2 3) "should be" false
+(and (> 4 2) (> 2 3)) "should be" false
+(= (* 2 2) 2) "should be" false
+
+;; x = 7/2
+(> 7/2 3) "should be" true
+(and (> 4 7/2) (> 7/2 3)) "should be" true
+(= (* 7/2 7/2) 7/2) "should be" false

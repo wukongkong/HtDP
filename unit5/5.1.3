@@ -1,0 +1,32 @@
+;; The first three lines of this file were inserted by DrRacket. They record metadata
+;; about the language level of this file in a form that our tools can easily process.
+#reader(lib "htdp-beginner-reader.ss" "lang")((modname |5.1|) (read-case-sensitive #t) (teachpacks ((lib "guess.rkt" "teachpack" "htdp"))) (htdp-settings #(#t constructor repeating-decimal #f #t none #f ((lib "guess.rkt" "teachpack" "htdp")))))
+;;================;;
+;; Exercise 5.1.3 ;;
+;;================;;
+
+;; convert3: number, number, number -> number
+;; to build a three digit number from its digits
+;; example: (convert3 1 2 3) should be 321
+(define (convert3 a b c)
+  (+ a (* b 10) (* c 100)))
+
+;; test:
+(= (convert3 1 2 3) 321)
+
+
+;; check-guess: number, number, number, number -> symbol
+;; to determine if the guess is smaller, equal or greater than the target
+;; examples: (check-guess3 6 5 4 555) should be 'TooSmall
+;; examples: (check-guess3 5 5 5 555) should be 'Perfect
+;; examples: (check-guess3 4 5 6 555) should be 'TooLarge
+(define (check-guess3 a b c target)
+  (cond
+    [(< (convert3 a b c) target) 'TooSmall]
+    [(= (convert3 a b c) target) 'Perfect]
+    [(> (convert3 a b c) target) 'TooLarge]))
+
+;; tests:
+(symbol=? (check-guess3 6 5 4 555) 'TooSmall)
+(symbol=?  (check-guess3 5 5 5 555) 'Perfect)
+(symbol=?  (check-guess3 4 5 6 555) 'TooLarge)

@@ -1,0 +1,22 @@
+;; The first three lines of this file were inserted by DrRacket. They record metadata
+;; about the language level of this file in a form that our tools can easily process.
+#reader(lib "htdp-beginner-reader.ss" "lang")((modname |5.1|) (read-case-sensitive #t) (teachpacks ((lib "guess.rkt" "teachpack" "htdp"))) (htdp-settings #(#t constructor repeating-decimal #f #t none #f ((lib "guess.rkt" "teachpack" "htdp")))))
+;;================;;
+;; Exercise 5.1.2 ;;
+;;================;;
+
+;; check-guess: number, number -> symbol
+;; to determine if que guess is smaller, equal or greater than the target
+;; examples: (check-guess 1 2) should be 'TooSmall
+;; examples: (check-guess 2 2) should be 'Perfect
+;; examples: (check-guess 3 2) should be 'TooLarge
+(define (check-guess guess target)
+  (cond
+    [(< guess target) 'TooSmall]
+    [(= guess target) 'Perfect]
+    [(> guess target) 'TooLarge]))
+
+;; tests:
+(symbol=? (check-guess 1 2) 'TooSmall)
+(symbol=? (check-guess 2 2) 'Perfect)
+(symbol=? (check-guess 3 2) 'TooLarge)

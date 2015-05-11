@@ -2,8 +2,29 @@
 ;; about the language level of this file in a form that our tools can easily process.
 #reader(lib "htdp-beginner-reader.ss" "lang")((modname |6.2|) (read-case-sensitive #t) (teachpacks ((lib "draw.rkt" "teachpack" "htdp"))) (htdp-settings #(#t constructor repeating-decimal #f #t none #f ((lib "draw.rkt" "teachpack" "htdp")))))
 ;;================;;
-;; Exercise 6.2.2 ;;
+;; Exercise 6.2.5 ;;
 ;;================;;
+
+;; next: symbol -> symbol
+;; to switch a traffic light's current colour and return the next one
+(define (next current-colour)
+  (cond
+    [(and (symbol=? current-colour 'red) (switch 'red 'green))
+     'green]
+    [(and (symbol=? current-colour 'yellow) (switch 'yellow 'red))
+     'red]
+    [(and (symbol=? current-colour 'green) (switch 'green 'yellow))
+     'yellow]))
+
+; -------------------------------------------------------------------------
+
+;; switch: symbol symbol -> boolean
+;; to clear the bulb of the first colour and then draw to bulb of the second colour
+(define (switch colour-off colour-on)
+  (and (clear-bulb colour-off)
+       (draw-bulb colour-on)))
+
+; -------------------------------------------------------------------------
 
 ;; clear-bulb: symbol -> boolean
 ;; to turn off the matching bulb in the traffic light
@@ -21,6 +42,20 @@
 
 ; -------------------------------------------------------------------------
 
+;; draw-bulb: symbol -> boolean
+;; to turn on the matching bulb in the traffic light
+(define (draw-bulb colour)
+  (cond
+    [(symbol=? colour 'red)
+     (draw-solid-disk (make-posn X-BULBS Y-RED) BULB-RADIUS colour)]
+    [(symbol=? colour 'yellow)
+     (draw-solid-disk (make-posn X-BULBS Y-YELLOW) BULB-RADIUS colour)]
+    [(symbol=? colour 'green)
+     (draw-solid-disk (make-posn X-BULBS Y-GREEN) BULB-RADIUS colour)]))
+
+
+; -------------------------------------------------------------------------
+
 ;; dimensions of traffic light
 
 (define WIDTH 50)
@@ -35,26 +70,14 @@
 (define Y-YELLOW (+ Y-RED BULB-DISTANCE (* 2 BULB-RADIUS)))
 (define Y-GREEN (+ Y-YELLOW BULB-DISTANCE (* 2 BULB-RADIUS)))
 
-;; draw the light with the red bulb turned on and then turn it off using the function clear-bulb
+;; draw the light with the red bulb turned on
 
 (start WIDTH HEIGHT)
-(draw-solid-disk (make-posn X-BULBS Y-RED) BULB-RADIUS 'red)
-(draw-circle (make-posn X-BULBS Y-YELLOW) BULB-RADIUS 'yellow)
-(draw-circle (make-posn X-BULBS Y-GREEN) BULB-RADIUS 'green)
-(clear-bulb 'red)
+(draw-bulb 'red)
 
-;; draw the light with the yellow bulb turned on and then turn it off using the function clear-bulb
+;; switch the traffic light four times
 
-(start WIDTH HEIGHT)
-(draw-solid-disk (make-posn X-BULBS Y-YELLOW) BULB-RADIUS 'yellow)
-(draw-circle (make-posn X-BULBS Y-RED) BULB-RADIUS 'red)
-(draw-circle (make-posn X-BULBS Y-GREEN) BULB-RADIUS 'green)
-(clear-bulb 'yellow)
-
-;; draw the light with the green bulb turned on and then turn it off using the function clear-bulb
-
-(start WIDTH HEIGHT)
-(draw-solid-disk (make-posn X-BULBS Y-GREEN) BULB-RADIUS 'green)
-(draw-circle (make-posn X-BULBS Y-RED) BULB-RADIUS 'red)
-(draw-circle (make-posn X-BULBS Y-YELLOW) BULB-RADIUS 'yellow)
-(clear-bulb 'green)
+(next 'red)
+(next 'green)
+(next 'yellow)
+(next 'red)
